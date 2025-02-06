@@ -4,6 +4,7 @@ using HotelListing.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelListing.API.Migrations
 {
     [DbContext(typeof(HotelListingDbContext))]
-    partial class HotelListingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250205125222_AddedDefaultRoles")]
+    partial class AddedDefaultRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,13 +223,13 @@ namespace HotelListing.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e40b55f8-0b34-4ebf-b5f7-cf93dd4f1d6a",
+                            Id = "27727359-58a7-4c46-9a8d-74e17e0d6071",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "f78c2bb9-5dfc-4cb3-9b8f-95cb0a2a491a",
+                            Id = "d551d322-ee36-4eb4-8d59-22add857ae47",
                             Name = "User",
                             NormalizedName = "USER"
                         });
