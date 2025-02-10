@@ -6,6 +6,7 @@ using HotelListing.API.Contracts;
 using HotelListing.API.Data;
 using HotelListing.API.Models.Users;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace HotelListing.API.Repository
@@ -62,7 +63,7 @@ namespace HotelListing.API.Repository
             return result.Errors;
         }
 
-        public async Task<string> CreateRegreshtoken()
+        public async Task<string> CreateRefreshToken()
         {
             await _userManager.RemoveAuthenticationTokenAsync(_user, _loginProvider, _refreshToken);
             var newRefreshToken = await _userManager.GenerateUserTokenAsync(_user, _loginProvider, _refreshToken);
@@ -71,7 +72,7 @@ namespace HotelListing.API.Repository
             return newRefreshToken;
         }
 
-        public async Task<AuthResponseDto> VerifyRegreshtoken(AuthResponseDto requestDto)
+        public async Task<AuthResponseDto> VerifyRefreshToken(AuthResponseDto requestDto)
         {
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var tokenContent = jwtSecurityTokenHandler.ReadJwtToken(requestDto.Token);
@@ -92,7 +93,7 @@ namespace HotelListing.API.Repository
                 {
                     Token = token,
                     UserId = _user.Id,
-                    RefreshToken = await CreateRegreshtoken()
+                    RefreshToken = await CreateRefreshToken()
                 };
             }
             

@@ -65,7 +65,7 @@ namespace HotelListing.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> RefreshToken([FromBody] AuthResponseDto requestDto)
         {
-            var authResponse = await _authManager.VerifyRegreshtoken(requestDto);
+            var authResponse = await _authManager.VerifyRefreshToken(requestDto);
 
             if (authResponse == null)
             {
